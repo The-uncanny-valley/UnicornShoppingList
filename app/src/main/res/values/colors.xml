@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="surface_default">#FFACE4</color>
+    <color name="background_light">#F5FFC6</color>
+    <color name="surface_uranian_blue">#B4E1FF</color>
+    <color name="surface_tropical_indigo">#AB87FF</color>
+    <color name="primary_light">#C1FF9B</color>
+    <color name="button_pressed">#9BD07D</color>
 </resources>
