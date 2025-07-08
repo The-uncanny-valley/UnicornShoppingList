@@ -14,5 +14,4 @@
     android:textSize="36sp"
     tools:background="@color/surface_default"
     tools:text="Avocado"
-
     />
