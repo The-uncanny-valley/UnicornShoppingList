@@ -3,6 +3,7 @@ package com.example.unicornshoppinglist;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ public class AddNoteActivity extends AppCompatActivity {
     private RadioButton radioButtonBlue;
     private Button buttonSave;
 
-    private Database database = new Database();
+    private Database database = Database.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class AddNoteActivity extends AppCompatActivity {
             Note note = new Note(id, text, color);
             database.add(note);
 
-            finish();
+            finish(); // activity завершает работу
         }
     }
 

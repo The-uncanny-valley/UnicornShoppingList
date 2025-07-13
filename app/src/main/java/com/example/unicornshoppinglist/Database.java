@@ -2,10 +2,19 @@ package com.example.unicornshoppinglist;
 
 import java.util.ArrayList;
 
-public class Database {
+public class Database { // singleton
     private ArrayList<Note> notes = new ArrayList<>();
 
-    public Database() {
+    private static Database uniqueInstance;
+
+    public static Database getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Database();
+        }
+        return uniqueInstance;
+    }
+
+    private Database() {
         for (int i = 0; i < 20; i++) {
             Note note = new Note(i, "Note " + i, "blue");
             notes.add(note);
