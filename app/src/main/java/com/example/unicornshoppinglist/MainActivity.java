@@ -59,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
         for (Note note : database.getNotes()) {
             View view = getLayoutInflater().inflate(R.layout.note_item, linearLayoutNotes, false);
 
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    database.remove(note.getId());
+                    showNotes();
+                }
+            });
+
             TextView textViewNote = view.findViewById(R.id.textViewNote);
             textViewNote.setText(note.getText());
 
