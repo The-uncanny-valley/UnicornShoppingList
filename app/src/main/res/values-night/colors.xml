@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_on_primary">#000000</color>
+    <color name="text_primary">#1E1C1C</color>
+    <color name="surface_default">#FFACE4</color>
+    <color name="background_light">#141414</color>
+    <color name="surface_uranian_blue">#9DB7C8</color>
+    <color name="surface_tropical_indigo">#9074D1</color>
+    <color name="primary_light">#8EBB73</color>
+    <color name="button_pressed">#9BD07D</color>
+</resources>

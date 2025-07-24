@@ -17,6 +17,7 @@
         android:background="@color/surface_default"
         android:ems="10"
         android:hint="@string/enter_note"
+        android:textColorHint="@color/text_primary"
         android:importantForAutofill="no"
         android:inputType="text"
         android:padding="12dp"
@@ -76,7 +77,7 @@
         android:minHeight="52dp"
         android:text="@string/save"
         android:textSize="20sp"
-        android:textColor="@color/surface_default"
+        android:textColor="@color/text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radioGroupColors" />
