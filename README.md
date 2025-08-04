@@ -17,6 +17,21 @@ The app features a **minimalist and soft design**, making it pleasant to use wit
 
 Unicorn is a light and charming solution for your everyday shopping lists. Whether you’re making a quick grocery run or planning your weekly purchases, Unicorn helps you stay organized in a delightful way.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="media/activity_main.png" alt="Main Screen (Light)" width="200"/></td>
+    <td><img src="media/activity_add_note.png" alt="Add note (Light)" width="200"/></td>
+    <td><img src="media/activity_main_night.png" alt="Main Screen (Dark)" width="200"/></td>
+    <td><img src="media/activity_add_note_night.png" alt="Add note (Dark)" width="200"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">Light Theme</td>
+    <td colspan="2" align="center">Dark Theme</td>
+  </tr>
+</table>
+
 ## Getting Started
 
 1. Clone the repository:
