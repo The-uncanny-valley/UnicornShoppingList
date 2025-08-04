@@ -3,40 +3,47 @@ package com.example.unicornshoppinglist;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.content.ContextCompat;
 
 public class AddNoteActivity extends AppCompatActivity {
 
     private EditText editTextNote;
     private RadioButton radioButtonPink;
     private RadioButton radioButtonPurple;
-    private RadioButton radioButtonBlue;
     private Button buttonSave;
+    private RadioGroup radioGroupColors;
 
-    private Database database = Database.getInstance();
+    private final Database database = Database.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_note);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
         initViews();
+
+        radioGroupColors.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radioButtonPink) {
+                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_default));
+                } else if (checkedId == R.id.radioButtonPurple) {
+                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_tropical_indigo));
+                } else if (checkedId == R.id.radioButtonBlue) {
+                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_uranian_blue));
+                }
+            }
+        });
+
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,10 +54,11 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private void initViews() {
         editTextNote = findViewById(R.id.editTextNote);
-        radioButtonBlue = findViewById(R.id.radioButtonBlue);
+        RadioButton radioButtonBlue = findViewById(R.id.radioButtonBlue);
         radioButtonPink = findViewById(R.id.radioButtonPink);
         radioButtonPurple = findViewById(R.id.radioButtonPurple);
         buttonSave = findViewById(R.id.buttonSave);
+        radioGroupColors = findViewById(R.id.radioGroupColors);
     }
 
     private void saveNote() {
