@@ -11,24 +11,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotes"
         android:layout_width="match_parent"
+        android:paddingBottom="96dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="match_parent" />
-
-    <!--
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/list_of_notes"
-        >
-
-        <LinearLayout
-            android:id="@+id/linearLayoutNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-    </ScrollView>
-    -->
 
     <View
         android:id="@+id/bottomGradient"
