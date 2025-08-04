@@ -3,22 +3,20 @@ package com.example.unicornshoppinglist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout linearLayoutNotes;
+    private RecyclerView recyclerViewNotes;
     private FloatingActionButton buttonAddNote;
+    private NotesAdapter notesAdapter;
 
     private Database database = Database.getInstance();
 
@@ -33,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         initViews();
+
+        notesAdapter = new NotesAdapter();
+
+        recyclerViewNotes.setAdapter(notesAdapter);
 
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,40 +52,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        linearLayoutNotes = findViewById(R.id.linearLayoutNotes);
+        recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
         buttonAddNote = findViewById(R.id.buttonAddNote);
     }
 
     private void showNotes() {
-        linearLayoutNotes.removeAllViews();
-        for (Note note : database.getNotes()) {
-            View view = getLayoutInflater().inflate(R.layout.note_item, linearLayoutNotes, false);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    database.remove(note.getId());
-                    showNotes();
-                }
-            });
-
-            TextView textViewNote = view.findViewById(R.id.textViewNote);
-            textViewNote.setText(note.getText());
-
-            int colorResId;
-
-            if (note.getColor().equals("pink")) {
-                colorResId = R.color.surface_default;
-            } else if (note.getColor().equals("blue")) {
-                colorResId = R.color.surface_uranian_blue;
-            } else {
-                colorResId = R.color.surface_tropical_indigo;
-            }
-
-            int color = ContextCompat.getColor(this, colorResId);
-            textViewNote.setBackgroundColor(color);
-
-            linearLayoutNotes.addView(view);
-        }
+        notesAdapter.setNotes(database.getNotes());
     }
 }
