@@ -12,21 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
+
     private ArrayList<Note> notes = new ArrayList<>();
 
-    private void setNotes(ArrayList<Note> notes) {
+    void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
+        notifyDataSetChanged();
     }
 
     @NonNull
 
     @Override
     public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.note_item,
-                parent,
-                false
-        );
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false);
         return new NotesViewHolder(view);
     }
 
