@@ -5,16 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotes"
         android:layout_width="match_parent"
-        android:paddingBottom="96dp"
+        android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:paddingTop="24dp"
+        android:paddingBottom="96dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="match_parent" />
+        tools:itemCount="3"
+        tools:listitem="@layout/note_item" />
 
     <View
         android:id="@+id/bottomGradient"
@@ -29,11 +32,12 @@
         android:id="@+id/buttonAddNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/primary_light"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/primary"
         android:contentDescription="@string/add_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:tint="@color/on_primary"
         app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>
