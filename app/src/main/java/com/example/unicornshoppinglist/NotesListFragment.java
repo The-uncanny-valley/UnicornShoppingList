@@ -18,10 +18,16 @@ public class NotesListFragment extends Fragment {
     private RecyclerView recyclerViewNotes;
     private View buttonAddNote;
     private NotesAdapter notesAdapter;
-    private NoteDatabase noteDatabase = NoteDatabase.getInstance(requireActivity().getApplication());
+    private NoteDatabase noteDatabase;
 
     public NotesListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        noteDatabase = NoteDatabase.getInstance(requireActivity().getApplication());
     }
 
     @Override
