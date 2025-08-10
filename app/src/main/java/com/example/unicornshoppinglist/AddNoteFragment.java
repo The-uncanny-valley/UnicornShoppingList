@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -22,8 +23,10 @@ public class AddNoteFragment extends Fragment {
     private RadioButton radioButtonPurple;
     private Button buttonSave;
     private RadioGroup radioGroupColors;
+    private LinearLayout linearLayoutNote;
 
     private NoteDatabase noteDatabase;
+    boolean isTablet;
 
     public AddNoteFragment() {
     }
@@ -44,8 +47,10 @@ public class AddNoteFragment extends Fragment {
         radioButtonPurple = view.findViewById(R.id.radioButtonPurple);
         buttonSave = view.findViewById(R.id.buttonSave);
         radioGroupColors = view.findViewById(R.id.radioGroupColors);
+        linearLayoutNote = view.findViewById(R.id.linearLayoutNote);
 
         noteDatabase = NoteDatabase.getInstance(requireActivity().getApplication());
+        isTablet = getResources().getBoolean(R.bool.isTablet);
 
         radioGroupColors.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radioButtonPink) {
@@ -83,8 +88,7 @@ public class AddNoteFragment extends Fragment {
         if (text.isEmpty()) {
             Toast.makeText(requireContext(), "The field is empty", Toast.LENGTH_SHORT).show();
         } else {
-            int id = noteDatabase.notesDao().getNotes().size();
-            Note note = new Note(id, text, color);
+            Note note = new Note(text, color);
             noteDatabase.notesDao().add(note);
 
             if (getActivity() instanceof MainActivity) {
