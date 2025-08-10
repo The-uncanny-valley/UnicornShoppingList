@@ -3,6 +3,7 @@
     <style name="Base.Theme.UnicornShoppingList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/primary</item>
+        <item name="android:windowBackground">@color/background</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
     <style name="Theme.UnicornShoppingList" parent="Base.Theme.UnicornShoppingList" />
