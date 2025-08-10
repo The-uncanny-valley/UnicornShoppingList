@@ -2,7 +2,6 @@ package com.example.unicornshoppinglist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddNote;
     private NotesAdapter notesAdapter;
 
-    private Database database = Database.getInstance();
+    private NoteDatabase noteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +25,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
 
+        noteDatabase = NoteDatabase.getInstance(getApplication());
+
         notesAdapter = new NotesAdapter();
-        notesAdapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
-            @Override
-            public void onNoteClick(Note note) {
-            }
+        notesAdapter.setOnNoteClickListener(note -> {
         });
 
         recyclerViewNotes.setAdapter(notesAdapter);
@@ -56,17 +54,14 @@ public class MainActivity extends AppCompatActivity {
             ) {
                 int position = viewHolder.getAdapterPosition();
                 Note note = notesAdapter.getNotes().get(position);
-                database.remove(note.getId());
+                noteDatabase.notesDao().remove(note.getId());
                 showNotes();
             }
         });
 
-        buttonAddNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = AddNoteActivity.newIntent(MainActivity.this);
-                startActivity(intent);
-            }
+        buttonAddNote.setOnClickListener(view -> {
+            Intent intent = AddNoteActivity.newIntent(MainActivity.this);
+            startActivity(intent);
         });
 
         itemTouchHelper.attachToRecyclerView(recyclerViewNotes);
@@ -84,6 +79,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNotes() {
-        notesAdapter.setNotes(database.getNotes());
+        notesAdapter.setNotes(noteDatabase.notesDao().getNotes());
     }
 }

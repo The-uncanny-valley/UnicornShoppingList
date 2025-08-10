@@ -8,7 +8,6 @@ import java.util.List;
 @Dao
 public interface NotesDao {
 
-
     @Query("SELECT * FROM notes")
     List<Note> getNotes();
 

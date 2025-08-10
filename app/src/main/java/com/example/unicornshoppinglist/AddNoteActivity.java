@@ -3,7 +3,6 @@ package com.example.unicornshoppinglist;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,7 +21,7 @@ public class AddNoteActivity extends AppCompatActivity {
     private Button buttonSave;
     private RadioGroup radioGroupColors;
 
-    private final Database database = Database.getInstance();
+    private NoteDatabase noteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,30 +30,23 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
         initViews();
 
-        radioGroupColors.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioButtonPink) {
-                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_default));
-                } else if (checkedId == R.id.radioButtonPurple) {
-                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_tropical_indigo));
-                } else if (checkedId == R.id.radioButtonBlue) {
-                    editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_uranian_blue));
-                }
+        noteDatabase = NoteDatabase.getInstance(getApplication());
+
+        radioGroupColors.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioButtonPink) {
+                editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_default));
+            } else if (checkedId == R.id.radioButtonPurple) {
+                editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_tropical_indigo));
+            } else if (checkedId == R.id.radioButtonBlue) {
+                editTextNote.setBackgroundColor(ContextCompat.getColor(AddNoteActivity.this, R.color.surface_uranian_blue));
             }
         });
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveNote();
-            }
-        });
+        buttonSave.setOnClickListener(view -> saveNote());
     }
 
     private void initViews() {
         editTextNote = findViewById(R.id.editTextNote);
-        RadioButton radioButtonBlue = findViewById(R.id.radioButtonBlue);
         radioButtonPink = findViewById(R.id.radioButtonPink);
         radioButtonPurple = findViewById(R.id.radioButtonPurple);
         buttonSave = findViewById(R.id.buttonSave);
@@ -75,9 +67,9 @@ public class AddNoteActivity extends AppCompatActivity {
         if (text.isEmpty()) {
             Toast.makeText(this, "The field is empty", Toast.LENGTH_SHORT).show();
         } else {
-            int id = database.getNotes().size();
-            Note note = new Note(id, text, color);
-            database.add(note);
+
+            Note note = new Note(text, color);
+            noteDatabase.notesDao().add(note);
 
             finish(); // activity завершает работу
         }

@@ -1,6 +1,7 @@
 package com.example.unicornshoppinglist;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "notes")
@@ -15,6 +16,11 @@ public class Note {
         this.id = id;
         this.text = text;
         this.color = color;
+    }
+
+    @Ignore
+    public Note(String text, String color) {
+        this(0, text, color);
     }
 
     public int getId() {
