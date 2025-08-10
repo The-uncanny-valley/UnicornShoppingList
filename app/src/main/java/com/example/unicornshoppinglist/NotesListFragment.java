@@ -1,6 +1,5 @@
 package com.example.unicornshoppinglist;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,17 +90,20 @@ public class NotesListFragment extends Fragment {
             boolean isTablet = addNoteContainer != null;
 
             if (isTablet) {
-                // Tablet mode
-                AddNoteFragment addNoteFragment = (AddNoteFragment) getActivity()
+                // Tablet mode — clear inputs in existing AddNoteFragment
+                AddNoteFragment addNoteFragment = (AddNoteFragment) requireActivity()
                         .getSupportFragmentManager()
                         .findFragmentById(R.id.add_note_container);
                 if (addNoteFragment != null) {
                     addNoteFragment.clearInputs();
                 }
             } else {
-                // Phone mode
-                Intent intent = AddNoteActivity.newIntent(getContext());
-                startActivity(intent);
+                // Phone mode — replace current fragment with AddNoteFragment
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new AddNoteFragment())
+                        .addToBackStack(null)  // allow back navigation
+                        .commit();
             }
         });
     }

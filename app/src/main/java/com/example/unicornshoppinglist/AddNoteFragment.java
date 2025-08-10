@@ -90,7 +90,17 @@ public class AddNoteFragment extends Fragment {
             if (getActivity() instanceof MainActivity) {
                 ((MainActivity) getActivity()).refreshNotes();
             }
-            clearInputs();
+
+            if (isTablet) {
+                // Tablet: just clear inputs, keep fragment visible
+                clearInputs();
+            } else {
+                // Phone: go back to previous fragment (NotesListFragment)
+                if (getActivity() != null) {
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
+            }
+
         }
     }
 
