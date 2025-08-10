@@ -1,8 +1,11 @@
 package com.example.unicornshoppinglist;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +18,10 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
     private List<Note> notes = new ArrayList<>();
-    private OnNoteClickListener onNoteClickListener;
+    private OnNoteCheckedChangeListener onNoteCheckedChangeListener;
 
-    public void setOnNoteClickListener(OnNoteClickListener onNoteClickListener) {
-        this.onNoteClickListener = onNoteClickListener;
+    public void setOnNoteCheckedChangeListener(OnNoteCheckedChangeListener onNoteCheckedChangeListener) {
+        this.onNoteCheckedChangeListener = onNoteCheckedChangeListener;
     }
 
     public List<Note> getNotes() {
@@ -59,10 +62,42 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         int color = ContextCompat.getColor(viewHolder.itemView.getContext(), colorResId);
         viewHolder.textViewNote.setBackgroundColor(color);
+        viewHolder.linearLayoutNote.setBackgroundColor(color);
 
-        viewHolder.itemView.setOnClickListener(v -> {
-            if (onNoteClickListener != null) {
-                onNoteClickListener.onNoteClick(note);
+        // --- Checkbox state ---
+        viewHolder.checkBoxNote.setOnCheckedChangeListener(null); // avoid old listeners firing
+        viewHolder.checkBoxNote.setChecked(note.isChecked());
+
+        // Strike-through text if checked
+        if (note.isChecked()) {
+            viewHolder.textViewNote.setPaintFlags(
+                    viewHolder.textViewNote.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+            );
+        } else {
+            viewHolder.textViewNote.setPaintFlags(
+                    viewHolder.textViewNote.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)
+            );
+        }
+
+
+        // Listen for changes
+        viewHolder.checkBoxNote.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            note.setChecked(isChecked);
+
+            // Update text appearance immediately
+            if (isChecked) {
+                viewHolder.textViewNote.setPaintFlags(
+                        viewHolder.textViewNote.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
+                );
+            } else {
+                viewHolder.textViewNote.setPaintFlags(
+                        viewHolder.textViewNote.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)
+                );
+            }
+
+            // Notify the listener (Activity/Fragment) to update DB
+            if (onNoteCheckedChangeListener != null) {
+                onNoteCheckedChangeListener.onNoteCheckedChanged(note, isChecked);
             }
         });
     }
@@ -74,14 +109,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     static class NotesViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewNote;
+        private final LinearLayout linearLayoutNote;
+        private final CheckBox checkBoxNote;
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewNote = itemView.findViewById(R.id.textViewNote);
+            linearLayoutNote = itemView.findViewById(R.id.linearLayoutNote);
+            checkBoxNote = itemView.findViewById(R.id.checkBoxNote);
         }
     }
 
-    interface OnNoteClickListener {
-        void onNoteClick(Note note);
+    public interface OnNoteCheckedChangeListener {
+        void onNoteCheckedChanged(Note note, boolean isChecked);
     }
 }

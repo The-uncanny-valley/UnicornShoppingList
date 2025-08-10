@@ -48,6 +48,14 @@ public class NotesListFragment extends Fragment {
 
         recyclerViewNotes.setAdapter(notesAdapter);
 
+        notesAdapter.setOnNoteCheckedChangeListener((note, isChecked) -> {
+            note.setChecked(isChecked);  // update the note object
+
+            // Update note in database on a background thread
+            new Thread(() -> noteDatabase.notesDao().update(note)).start();
+        });
+
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 0,
                 ItemTouchHelper.END
