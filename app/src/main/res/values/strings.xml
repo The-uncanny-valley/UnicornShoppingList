@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">UnicornShoppingList</string>
-    <string name="add_note">Add note</string>
-    <string name="list_of_notes">List of your notes. Scroll to view all items.</string>
-    <string name="enter_note">Enter note</string>
+    <string name="app_name">Unicorn</string>
+    <string name="add_item">Add item</string>
+    <string name="list_of_items">Your shopping list. Scroll to view all items.</string>
+    <string name="enter_item">Enter item</string>
     <string name="save">Save</string>
+    <string name="the_field_is_empty">The field is empty</string>
 </resources>

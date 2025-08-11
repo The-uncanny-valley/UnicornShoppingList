@@ -15,7 +15,7 @@
         android:background="@color/surface_default"
         android:ems="10"
         android:fontFamily="@font/justanotherhand_regular"
-        android:hint="@string/enter_note"
+        android:hint="@string/enter_item"
         android:importantForAutofill="no"
         android:inputType="text"
         android:letterSpacing="0.08"

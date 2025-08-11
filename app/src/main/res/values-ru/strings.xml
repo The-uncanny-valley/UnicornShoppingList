@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Unicorn</string>
+    <string name="add_item">Добавить товар</string>
+    <string name="list_of_items">Список покупок. Листайте, чтобы увидеть все</string>
+    <string name="enter_item">Введите товар</string>
+    <string name="save">Сохранить</string>
+    <string name="the_field_is_empty">Пустое поле</string>
+</resources>

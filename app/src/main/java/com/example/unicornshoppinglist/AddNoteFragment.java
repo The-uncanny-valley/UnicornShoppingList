@@ -86,7 +86,7 @@ public class AddNoteFragment extends Fragment {
         }
 
         if (text.isEmpty()) {
-            Toast.makeText(requireContext(), "The field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.the_field_is_empty, Toast.LENGTH_SHORT).show();
         } else {
             Note note = new Note(text, color);
             noteDatabase.notesDao().add(note);
