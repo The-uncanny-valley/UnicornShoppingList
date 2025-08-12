@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -23,7 +22,6 @@ public class AddNoteFragment extends Fragment {
     private RadioButton radioButtonPurple;
     private Button buttonSave;
     private RadioGroup radioGroupColors;
-    private LinearLayout linearLayoutNote;
 
     private NoteDatabase noteDatabase;
     boolean isTablet;
@@ -42,15 +40,7 @@ public class AddNoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        editTextNote = view.findViewById(R.id.editTextNote);
-        radioButtonPink = view.findViewById(R.id.radioButtonPink);
-        radioButtonPurple = view.findViewById(R.id.radioButtonPurple);
-        buttonSave = view.findViewById(R.id.buttonSave);
-        radioGroupColors = view.findViewById(R.id.radioGroupColors);
-        linearLayoutNote = view.findViewById(R.id.linearLayoutNote);
-
-        noteDatabase = NoteDatabase.getInstance(requireActivity().getApplication());
-        isTablet = getResources().getBoolean(R.bool.isTablet);
+        initViews(view);
 
         radioGroupColors.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radioButtonPink) {
@@ -115,5 +105,16 @@ public class AddNoteFragment extends Fragment {
                 requireContext(),
                 R.color.surface_default
         ));
+    }
+
+    public void initViews(View view) {
+        editTextNote = view.findViewById(R.id.editTextNote);
+        radioButtonPink = view.findViewById(R.id.radioButtonPink);
+        radioButtonPurple = view.findViewById(R.id.radioButtonPurple);
+        buttonSave = view.findViewById(R.id.buttonSave);
+        radioGroupColors = view.findViewById(R.id.radioGroupColors);
+
+        noteDatabase = NoteDatabase.getInstance(requireActivity().getApplication());
+        isTablet = getResources().getBoolean(R.bool.isTablet);
     }
 }
