@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <EditText
+        android:id="@+id/editTextNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/surface_default"
+        android:ems="10"
+        android:fontFamily="@font/daneehand_regular_cyr"
+        android:hint="@string/enter_item"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:letterSpacing="0.08"
+        android:minHeight="52dp"
+        android:padding="12dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/on_primary"
+        android:textColorHint="@color/on_primary"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupColors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/editTextNote">
+
+        <RadioButton
+            android:id="@+id/radioButtonPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/surface_default"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="" />
+
+        <RadioButton
+            android:id="@+id/radioButtonPurple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/surface_tropical_indigo"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/surface_uranian_blue"
+            android:button="@null" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:minWidth="200dp"
+        android:minHeight="52dp"
+        android:padding="14dp"
+        android:text="@string/save"
+        android:textColor="@color/on_primary"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupColors" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

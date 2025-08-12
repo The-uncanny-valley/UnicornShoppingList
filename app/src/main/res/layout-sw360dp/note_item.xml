@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutNote"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:background="@color/surface_default">
+
+    <TextView
+        android:id="@+id/textViewNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="8dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/justanotherhand_regular"
+        android:letterSpacing="0.08"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/on_primary"
+        android:textSize="36sp"
+        tools:background="@color/surface_default"
+        tools:text="Avocado" />
+
+    <CheckBox
+        android:id="@+id/checkBoxNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:buttonTint="@color/on_primary"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>
