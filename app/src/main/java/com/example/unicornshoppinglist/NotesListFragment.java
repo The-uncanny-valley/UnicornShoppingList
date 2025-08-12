@@ -41,7 +41,7 @@ public class NotesListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerViewNotes = view.findViewById(R.id.recyclerViewNotes);
-        buttonAddNote = view.findViewById(R.id.buttonAddNote);
+        buttonAddNote = view.findViewById(R.id.buttonAddItem);
 
         notesAdapter = new NotesAdapter();
 

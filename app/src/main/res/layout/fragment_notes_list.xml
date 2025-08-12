@@ -20,12 +20,13 @@
         tools:listitem="@layout/note_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonAddNote"
+        android:id="@+id/buttonAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
         android:backgroundTint="@color/primary"
         android:contentDescription="@string/add_item"
+        app:borderWidth="0dp"
         app:fabCustomSize="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
