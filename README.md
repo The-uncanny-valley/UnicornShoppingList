@@ -8,7 +8,9 @@ The app features a **minimalist and soft design**, making it pleasant to use wit
 ## Features ✨
 
 * Quick and easy shopping list management
-* Three color options to organize your notes
+* Delete items by swiping them away
+* Mark items as bought by ticking to strike through
+* Three color options to organize your shopping list
 * Clean, intuitive, and user-friendly interface
 * Small app size
 * 100% free with no ads
